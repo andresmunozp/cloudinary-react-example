@@ -1,6 +1,8 @@
 const form = document.querySelector('#form')
 
 form.addEventListener('submit', async (e) => {
+  // Reemplazar cloud_name y upload_preset donde corresponda
+
   // No se maneja estado de react, si hay alguna necesidad de usar el estado por ejemplo para agregar validaciones personalisadas la logica es la misma solo que se deja usar los formData por la info del useState ( const formData = useState({name: ''}) )
 
   // El userData se rellena dependiendo de los inputs en el form, si el input es de tipo File entonces ese archivo se sube primero a cloudinary y despues agregar la url retornada por cloudinary al userData, una vez se hallan subido todos los archivos a cloudinary se realiza la peticion para enviar la informacion del usuario al backend
@@ -10,8 +12,8 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault()
   const formData = new FormData(e.target)
   const cloudinaryFormData = new FormData()
-  cloudinaryFormData.append('upload_preset', 'rbavl8uy');
-  cloudinaryFormData.append('cloud_name', 'dcgtdt02k');
+  cloudinaryFormData.append('upload_preset', 'upload_preset');
+  cloudinaryFormData.append('cloud_name', 'cloud_name');
 
   const userData = {}
 
@@ -21,7 +23,7 @@ form.addEventListener('submit', async (e) => {
       cloudinaryFormData.append('folder', key)
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dcgtdt02k/image/upload`,
+        `https://api.cloudinary.com/v1_1/cloud_name/image/upload`,
         {
           method: 'post',
           body: cloudinaryFormData,
